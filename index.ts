@@ -1,6 +1,5 @@
 import { createHmac, timingSafeEqual, type KeyObject } from 'node:crypto';
 
-
 export type StringSingerSecret = string | NodeJS.ArrayBufferView | KeyObject;
 
 export function sign(val: string, secret: StringSingerSecret): string {
@@ -14,7 +13,7 @@ export function sign(val: string, secret: StringSingerSecret): string {
 
   const signature = createHmac('sha256', secret)
     .update(val)
-    .digest('base64url')
+    .digest('base64url');
   return `${val}.${signature}`;
 }
 

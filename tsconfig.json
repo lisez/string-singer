@@ -1,7 +1,11 @@
 {
   "$schema": "https://www.schemastore.org/tsconfig",
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "strict": true,
     "types": ["vitest/globals"],
     "paths": {
       "#internal/*": ["./*"]
@@ -9,3 +13,4 @@
     "allowImportingTsExtensions": true
   }
 }
+
