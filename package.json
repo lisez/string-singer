@@ -16,7 +16,9 @@
   },
   "scripts": {
     "test": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build:demo": "vite build demo --outDir dist --base=/string-singer/",
+    "dev:demo": "vite demo"
   },
   "devDependencies": {
     "@types/node": "*",

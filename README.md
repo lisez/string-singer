@@ -96,6 +96,11 @@ Each runtime adapter contains its own test suite:
   bun test runtimes/bun.test.ts
   ```
 
+- **Running the Demo Locally (Development Mode)**:
+  ```bash
+  npm run dev:demo
+  ```
+
 ---
 
 ## License

@@ -44,9 +44,12 @@ const signed = await sign('hello', secret);
 const unsigned = await unsign(signed, secret); // 'hello' or false
 ```
 
-## Testing
+## Development & Testing
 
 Each runtime has its own test suite:
 - Node.js & Browser tests (Vitest): `npm test`
 - Deno tests: `deno test --allow-net runtimes/deno.test.ts`
 - Bun tests: `bun test runtimes/bun.test.ts`
+
+To run the interactive demo site locally in development mode:
+- `npm run dev:demo` (launches Vite dev server for `demo/`)
