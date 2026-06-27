@@ -1,0 +1,27 @@
+# Version Control
+.git/
+.gitignore
+
+# Workflows & CI
+.github/
+
+# Development scripts
+scripts/
+
+# Config files
+tsconfig.json
+vite.config.ts
+.editorconfig
+
+# Tests
+**/*.test.ts
+coverage/
+
+# Demos & Documentation
+demo/
+llms.txt
+
+# Source code
+index.ts
+runtimes/
+utils/
