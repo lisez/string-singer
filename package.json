@@ -1,0 +1,21 @@
+{
+  "$schema": "https://www.schemastore.org/package.json",
+  "name": "string-singer",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "imports": {
+    "#internal/*": "./*"
+  },
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
+  }
+}
