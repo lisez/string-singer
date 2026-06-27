@@ -1,0 +1,52 @@
+# string-singer
+
+A lightweight, secure, runtime-agnostic library for signing and unsigning strings (such as cookie values) using HMAC-SHA256.
+
+## Runtimes & Implementations
+
+All runtime-specific implementations reside in the `runtimes/` directory:
+- **Node.js (Synchronous)**: Located in `runtimes/node.ts`. Uses `node:crypto` (`createHmac` and `timingSafeEqual`).
+- **Browser/Universal (Asynchronous)**: Located in `runtimes/browser.ts`, delegating to:
+  - `runtimes/browser.subtle.ts` (SubtleCrypto raw key import)
+  - `runtimes/browser.cryptokey.ts` (CryptoKey signing/verification via Web Cryptography API)
+- **Deno (Asynchronous)**: Located in `runtimes/deno.ts`, re-exports the browser implementation.
+- **Bun (Asynchronous)**: Located in `runtimes/bun.ts`, re-exports the browser implementation.
+
+Utilities:
+- **Base64 Utility**: Located in `utils/base64.ts`. Contains URL-safe base64 encoding and decoding helpers (`bytesToBase64Url`, `base64UrlToBytes`).
+
+The root `index.ts` is the default entry point and re-exports the synchronous Node.js runtime.
+
+## Installation & Usage
+
+### Installing
+```bash
+npm install string-singer
+```
+
+### Importing
+
+#### Node.js (Sync) — Default
+```typescript
+import { sign, unsign } from 'string-singer'; // or 'string-singer/node'
+
+const secret = 'keyboard cat';
+const signed = sign('hello', secret);
+const unsigned = unsign(signed, secret); // 'hello' or false
+```
+
+#### Browser, Deno, Bun, or Universal (Async)
+```typescript
+import { sign, unsign } from 'string-singer/browser'; // or 'string-singer/deno' / 'string-singer/bun'
+
+const secret = 'keyboard cat';
+const signed = await sign('hello', secret);
+const unsigned = await unsign(signed, secret); // 'hello' or false
+```
+
+## Testing
+
+Each runtime has its own test suite:
+- Node.js & Browser tests (Vitest): `npm test`
+- Deno tests: `deno test --allow-net runtimes/deno.test.ts`
+- Bun tests: `bun test runtimes/bun.test.ts`

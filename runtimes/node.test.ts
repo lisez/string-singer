@@ -1,6 +1,6 @@
-import { sign, unsign } from '#internal/index.ts';
+import { sign, unsign } from './node.ts';
 
-describe.concurrent('lib-string-singer', () => {
+describe.concurrent('lib-string-singer-node', () => {
   test('signs and unsigns a value', () => {
     const secret = 'keyboard cat';
     const signed = sign('hello', secret);

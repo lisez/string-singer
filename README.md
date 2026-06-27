@@ -1,1 +1,103 @@
 # string-singer
+
+A lightweight, secure, and runtime-agnostic library for signing and unsigning strings (such as cookie values) using HMAC-SHA256. It supports Node.js, Deno, Bun, and modern Web Browsers natively.
+
+## Features
+
+- **Runtime Agnostic**: Seamlessly runs on Node.js, Deno, Bun, and standard Web browsers.
+- **Web Cryptography API**: Leverages the native `globalThis.crypto.subtle` API for high-performance and standard-compliant browser/edge environments.
+- **Fast Synchronous Fallbacks**: Provides a dedicated, synchronous Node.js adapter using the native `node:crypto` library.
+- **Timing-Attack Safe**: Employs constant-time comparisons (`timingSafeEqual` in Node, `subtle.verify` in Web Crypto) to defend against timing attacks.
+- **TypeScript First**: Full type safety and support out-of-the-box.
+
+---
+
+## Installation
+
+Install using your preferred package manager:
+
+```bash
+npm install string-singer
+# or
+bun add string-singer
+# or
+pnpm add string-singer
+```
+
+---
+
+## Usage
+
+### 🟢 Node.js (Sync) — Default Entry Point
+The default entry point exports synchronous versions of `sign` and `unsign` using the native `node:crypto` module.
+
+```typescript
+import { sign, unsign } from 'string-singer';
+
+const secret = 'keyboard cat'; // string, NodeJS.ArrayBufferView, or KeyObject
+
+// Sign a value
+const signed = sign('hello', secret);
+console.log(signed); // "hello.XXXXX..."
+
+// Unsign and verify a value
+const unsigned = unsign(signed, secret);
+console.log(unsigned); // "hello" (or false if tampered)
+```
+
+### 🌐 Universal (Async) — Browser, Deno, Bun, Edge
+For Browser, Deno, Bun, or Edge environments requiring the **Web Cryptography API**, import from the appropriate subpath:
+
+```typescript
+import { sign, unsign } from 'string-singer/browser'; // or string-singer/deno /bun
+
+const secret = 'keyboard cat'; // string, BufferSource, or CryptoKey
+
+// Sign a value
+const signed = await sign('hello', secret);
+console.log(signed); // "hello.XXXXX..."
+
+// Unsign and verify a value
+const unsigned = await unsign(signed, secret);
+console.log(unsigned); // "hello" (or false if tampered)
+```
+
+---
+
+## Architecture & Exports
+
+The library is structured as follows:
+
+- **Root (`string-singer`)**: The default entry point. Re-exports the synchronous Node.js implementation (`runtimes/node.ts`).
+- **Node.js (`string-singer/node`)**: Re-exports the synchronous Node.js implementation.
+- **Browser (`string-singer/browser`)**: Asynchronous Browser-specific Web Cryptography adapter, delegating to:
+  - `runtimes/browser.subtle.ts` (SubtleCrypto raw key import)
+  - `runtimes/browser.cryptokey.ts` (CryptoKey signing and verification)
+- **Deno (`string-singer/deno`)**: Asynchronous Deno adapter re-exporting the browser implementation.
+- **Bun (`string-singer/bun`)**: Asynchronous Bun adapter re-exporting the browser implementation.
+- **Utilities (`utils/base64.ts`)**: Contains URL-safe base64 helper functions (`bytesToBase64Url`, `base64UrlToBytes`).
+
+---
+
+## Development & Testing
+
+Each runtime adapter contains its own test suite:
+
+- **Node.js & Browser (Vitest)**:
+  ```bash
+  npm test
+  ```
+- **Deno (native test runner)**:
+  ```bash
+  deno test --allow-net runtimes/deno.test.ts
+  ```
+- **Bun (native test runner)**:
+  ```bash
+  bun test runtimes/bun.test.ts
+  ```
+
+---
+
+## License
+
+[MIT](LICENSE)

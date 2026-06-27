@@ -8,7 +8,11 @@
     "#internal/*": "./*"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./node": "./runtimes/node.ts",
+    "./deno": "./runtimes/deno.ts",
+    "./bun": "./runtimes/bun.ts",
+    "./browser": "./runtimes/browser.ts"
   },
   "scripts": {
     "test": "vitest run --coverage",
