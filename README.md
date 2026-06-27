@@ -2,6 +2,8 @@
 
 A lightweight, secure, and runtime-agnostic library for signing and unsigning strings (such as cookie values) using HMAC-SHA256. It supports Node.js, Deno, Bun, and modern Web Browsers natively.
 
+_Inspired by and compatible in spirit with [tj/node-cookie-signature](https://github.com/tj/node-cookie-signature), but modernized with TypeScript first and native Web Cryptography support._
+
 ## Features
 
 - **Runtime Agnostic**: Seamlessly runs on Node.js, Deno, Bun, and standard Web browsers.
@@ -29,6 +31,7 @@ pnpm add string-singer
 ## Usage
 
 ### 🟢 Node.js (Sync) — Default Entry Point
+
 The default entry point exports synchronous versions of `sign` and `unsign` using the native `node:crypto` module.
 
 ```typescript
@@ -46,6 +49,7 @@ console.log(unsigned); // "hello" (or false if tampered)
 ```
 
 ### 🌐 Universal (Async) — Browser, Deno, Bun, Edge
+
 For Browser, Deno, Bun, or Edge environments requiring the **Web Cryptography API**, import from the appropriate subpath:
 
 ```typescript
@@ -92,6 +96,7 @@ Each runtime adapter contains its own test suite:
   deno test --allow-net runtimes/deno.test.ts
   ```
 - **Bun (native test runner)**:
+
   ```bash
   bun test runtimes/bun.test.ts
   ```

@@ -1,6 +1,6 @@
 # string-singer
 
-A lightweight, secure, runtime-agnostic library for signing and unsigning strings (such as cookie values) using HMAC-SHA256.
+A lightweight, secure, runtime-agnostic library for signing and unsigning strings (such as cookie values) using HMAC-SHA256. Inspired by and compatible in spirit with tj/node-cookie-signature (which also uses HMAC-SHA256), but modernized with TypeScript first and native Web Cryptography support.
 
 ## Runtimes & Implementations
 
