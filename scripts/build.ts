@@ -23,6 +23,11 @@ async function main() {
     const distPkg = {
       name: rootPkg.name,
       version: rootPkg.version,
+      description: rootPkg.description,
+      repository: rootPkg.repository,
+      bugs: rootPkg.bugs,
+      homepage: rootPkg.homepage,
+      license: rootPkg.license,
       type: 'module',
       main: './index.cjs',
       module: './index.js',
