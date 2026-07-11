@@ -3,6 +3,12 @@
   "name": "string-singer",
   "version": "1.0.1",
   "type": "module",
+  "homepage": "https://lisez.github.io/string-singer/",
+  "repository": "github:lisez/string-singer",
+  "bugs": {
+    "url": "https://github.com/lisez/string-singer/issues"
+  },
+  "license": "MIT",
   "imports": {
     "#internal/*": "./*"
   },
