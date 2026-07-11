@@ -1,8 +1,6 @@
 # string-singer
 
-![NPM Version](https://img.shields.io/npm/v/string-singer)
-
-![NPM License](https://img.shields.io/npm/l/string-singer)
+![NPM License](https://img.shields.io/npm/l/string-singer) ![NPM Version](https://img.shields.io/npm/v/string-singer)
 
 A lightweight, secure, and runtime-agnostic library for signing and unsigning strings (such as cookie values) using HMAC-SHA256. It supports Node.js, Deno, Bun, and modern Web Browsers natively.
 
