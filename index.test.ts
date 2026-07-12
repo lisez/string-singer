@@ -23,11 +23,13 @@ describe.concurrent('lib-string-singer', () => {
 
   test('throws for invalid inputs and missing secrets', () => {
     expect(() => sign(123 as unknown as string, 'secret')).toThrow(TypeError);
-    expect(() => sign('hello', undefined as unknown as string)).toThrow('Secret key must be provided.');
-    expect(() => unsign(123 as unknown as string, 'secret')).toThrow(TypeError);
-    expect(() => unsign('hello.signature', undefined as unknown as string)).toThrow(
+    expect(() => sign('hello', undefined as unknown as string)).toThrow(
       'Secret key must be provided.',
     );
+    expect(() => unsign(123 as unknown as string, 'secret')).toThrow(TypeError);
+    expect(() =>
+      unsign('hello.signature', undefined as unknown as string),
+    ).toThrow('Secret key must be provided.');
   });
 
   test('returns false for invalid secret causing error in createHmac', () => {

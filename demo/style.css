@@ -72,8 +72,12 @@ body {
 }
 
 @keyframes float {
-  0% { transform: translateY(0) scale(1); }
-  100% { transform: translateY(-50px) scale(1.1); }
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-50px) scale(1.1);
+  }
 }
 
 /* Header */
@@ -97,8 +101,13 @@ header {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
 }
 
 header h1 {
@@ -382,7 +391,9 @@ footer {
   box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.4s ease;
   z-index: 999;
 }
 

@@ -24,11 +24,15 @@ describe('lib-string-singer-bun', () => {
 
   test('throws for invalid inputs and missing secrets', async () => {
     expect(sign(123 as unknown as string, 'secret')).rejects.toThrow(TypeError);
-    expect(sign('hello', undefined as unknown as string)).rejects.toThrow('Secret key must be provided.');
-    expect(unsign(123 as unknown as string, 'secret')).rejects.toThrow(TypeError);
-    expect(unsign('hello.signature', undefined as unknown as string)).rejects.toThrow(
+    expect(sign('hello', undefined as unknown as string)).rejects.toThrow(
       'Secret key must be provided.',
     );
+    expect(unsign(123 as unknown as string, 'secret')).rejects.toThrow(
+      TypeError,
+    );
+    expect(
+      unsign('hello.signature', undefined as unknown as string),
+    ).rejects.toThrow('Secret key must be provided.');
   });
 
   test('handles BufferSource and CryptoKey secrets', async () => {

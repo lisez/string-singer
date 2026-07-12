@@ -16,7 +16,7 @@ async function main() {
 
     // 2. Read root package.json
     const rootPkg = JSON.parse(
-      fs.readFileSync(resolve(rootDir, 'package.json'), 'utf8')
+      fs.readFileSync(resolve(rootDir, 'package.json'), 'utf8'),
     );
 
     // 3. Construct dist package.json
@@ -65,12 +65,15 @@ async function main() {
     // Write dist/package.json
     fs.writeFileSync(
       resolve(distDir, 'package.json'),
-      JSON.stringify(distPkg, null, 2)
+      JSON.stringify(distPkg, null, 2),
     );
     console.log('📝 Generated dist/package.json');
 
     // 4. Copy README.md and LICENSE
-    fs.copyFileSync(resolve(rootDir, 'README.md'), resolve(distDir, 'README.md'));
+    fs.copyFileSync(
+      resolve(rootDir, 'README.md'),
+      resolve(distDir, 'README.md'),
+    );
     fs.copyFileSync(resolve(rootDir, 'LICENSE'), resolve(distDir, 'LICENSE'));
     console.log('📄 Copied README.md and LICENSE to dist/');
 

@@ -1,23 +1,39 @@
 import { sign, unsign } from '../runtimes/browser.ts';
 
 // Dom Elements
-const signValueInput = document.getElementById('sign-value') as HTMLInputElement;
-const signSecretInput = document.getElementById('sign-secret') as HTMLInputElement;
+const signValueInput = document.getElementById(
+  'sign-value',
+) as HTMLInputElement;
+const signSecretInput = document.getElementById(
+  'sign-secret',
+) as HTMLInputElement;
 const signOutput = document.getElementById('sign-output') as HTMLElement;
-const copySignedBtn = document.getElementById('copy-signed') as HTMLButtonElement;
+const copySignedBtn = document.getElementById(
+  'copy-signed',
+) as HTMLButtonElement;
 
-const unsignValueInput = document.getElementById('unsign-value') as HTMLInputElement;
-const unsignSecretInput = document.getElementById('unsign-secret') as HTMLInputElement;
+const unsignValueInput = document.getElementById(
+  'unsign-value',
+) as HTMLInputElement;
+const unsignSecretInput = document.getElementById(
+  'unsign-secret',
+) as HTMLInputElement;
 const unsignOutput = document.getElementById('unsign-output') as HTMLElement;
-const statusContainer = document.getElementById('status-container') as HTMLElement;
-const verificationStatus = document.getElementById('verification-status') as HTMLElement;
-const statusText = verificationStatus.querySelector('.status-text') as HTMLElement;
+const statusContainer = document.getElementById(
+  'status-container',
+) as HTMLElement;
+const verificationStatus = document.getElementById(
+  'verification-status',
+) as HTMLElement;
+const statusText = verificationStatus.querySelector(
+  '.status-text',
+) as HTMLElement;
 
 const togglePasswordBtns = document.querySelectorAll('.toggle-password');
 const toast = document.getElementById('toast') as HTMLElement;
 
 // Toggle password visibility
-togglePasswordBtns.forEach(btn => {
+togglePasswordBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
     const input = btn.previousElementSibling as HTMLInputElement;
     if (input.type === 'password') {
@@ -43,11 +59,14 @@ function showToast(message: string) {
 copySignedBtn.addEventListener('click', () => {
   const text = signOutput.textContent || '';
   if (text && text !== '—' && !text.includes('Error')) {
-    navigator.clipboard.writeText(text).then(() => {
-      showToast('Copied to clipboard!');
-    }).catch(() => {
-      showToast('Failed to copy.');
-    });
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        showToast('Copied to clipboard!');
+      })
+      .catch(() => {
+        showToast('Failed to copy.');
+      });
   }
 });
 
@@ -106,7 +125,8 @@ async function handleUnsign() {
       handleSign();
     } else {
       verificationStatus.className = 'status-indicator error';
-      statusText.textContent = 'Invalid Signature! The string has been tampered with.';
+      statusText.textContent =
+        'Invalid Signature! The string has been tampered with.';
       unsignOutput.textContent = '—';
     }
   } catch (err: any) {

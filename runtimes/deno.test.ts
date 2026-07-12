@@ -22,10 +22,22 @@ Deno.test('returns false for malformed signed input', async () => {
 });
 
 Deno.test('throws for invalid inputs and missing secrets', async () => {
-  await assertRejects(() => sign(123 as unknown as string, 'secret'), TypeError);
-  await assertRejects(() => sign('hello', undefined as unknown as string), TypeError);
-  await assertRejects(() => unsign(123 as unknown as string, 'secret'), TypeError);
-  await assertRejects(() => unsign('hello.signature', undefined as unknown as string), TypeError);
+  await assertRejects(
+    () => sign(123 as unknown as string, 'secret'),
+    TypeError,
+  );
+  await assertRejects(
+    () => sign('hello', undefined as unknown as string),
+    TypeError,
+  );
+  await assertRejects(
+    () => unsign(123 as unknown as string, 'secret'),
+    TypeError,
+  );
+  await assertRejects(
+    () => unsign('hello.signature', undefined as unknown as string),
+    TypeError,
+  );
 });
 
 Deno.test('handles BufferSource and CryptoKey secrets', async () => {
@@ -46,10 +58,16 @@ Deno.test('handles BufferSource and CryptoKey secrets', async () => {
   assertEquals(await unsign('abc', cryptoKey), false);
 });
 
-Deno.test('returns false for invalid secret causing importKey to throw', async () => {
-  assertEquals(await unsign('hello.signature', {} as any), false);
-});
+Deno.test(
+  'returns false for invalid secret causing importKey to throw',
+  async () => {
+    assertEquals(await unsign('hello.signature', {} as any), false);
+  },
+);
 
-Deno.test('returns false for invalid base64url characters in signature', async () => {
-  assertEquals(await unsign('hello.!!!', 'secret'), false);
-});
+Deno.test(
+  'returns false for invalid base64url characters in signature',
+  async () => {
+    assertEquals(await unsign('hello.!!!', 'secret'), false);
+  },
+);

@@ -21,7 +21,8 @@ export default defineConfig({
         browser: 'runtimes/browser.ts',
       },
       formats: ['es', 'cjs'],
-      fileName: (format, entryName) => `${entryName}.${format === 'es' ? 'js' : 'cjs'}`,
+      fileName: (format, entryName) =>
+        `${entryName}.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
       external: ['node:crypto'],
@@ -29,10 +30,6 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    exclude: [
-      ...configDefaults.exclude,
-      '**/deno.test.ts',
-      '**/bun.test.ts',
-    ],
+    exclude: [...configDefaults.exclude, '**/deno.test.ts', '**/bun.test.ts'],
   },
 });

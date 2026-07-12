@@ -3,7 +3,10 @@ import * as subtle from './browser.subtle.ts';
 
 export type StringSingerSecret = string | BufferSource | CryptoKey;
 
-export async function sign(val: string, secret: StringSingerSecret): Promise<string> {
+export async function sign(
+  val: string,
+  secret: StringSingerSecret,
+): Promise<string> {
   if (typeof val !== 'string') {
     throw new TypeError('Cookie value must be provided as a string.');
   }

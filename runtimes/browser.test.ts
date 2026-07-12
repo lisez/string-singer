@@ -22,14 +22,18 @@ describe.concurrent('lib-string-singer-browser', () => {
   });
 
   test('throws for invalid inputs and missing secrets', async () => {
-    await expect(sign(123 as unknown as string, 'secret')).rejects.toThrow(TypeError);
+    await expect(sign(123 as unknown as string, 'secret')).rejects.toThrow(
+      TypeError,
+    );
     await expect(sign('hello', undefined as unknown as string)).rejects.toThrow(
       'Secret key must be provided.',
     );
-    await expect(unsign(123 as unknown as string, 'secret')).rejects.toThrow(TypeError);
-    await expect(unsign('hello.signature', undefined as unknown as string)).rejects.toThrow(
-      'Secret key must be provided.',
+    await expect(unsign(123 as unknown as string, 'secret')).rejects.toThrow(
+      TypeError,
     );
+    await expect(
+      unsign('hello.signature', undefined as unknown as string),
+    ).rejects.toThrow('Secret key must be provided.');
   });
 
   test('handles BufferSource and CryptoKey secrets', async () => {

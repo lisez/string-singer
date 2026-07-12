@@ -1,6 +1,9 @@
 import * as cryptokey from './browser.cryptokey.ts';
 
-export async function sign(val: string, secret: string | BufferSource): Promise<string> {
+export async function sign(
+  val: string,
+  secret: string | BufferSource,
+): Promise<string> {
   const encoder = new TextEncoder();
   const keyData = typeof secret === 'string' ? encoder.encode(secret) : secret;
 

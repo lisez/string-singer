@@ -5,16 +5,11 @@ export function bytesToBase64Url(bytes: Uint8Array): string {
     binary += String.fromCharCode(bytes[i]);
   }
   const base64 = btoa(binary);
-  return base64
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '');
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
 export function base64UrlToBytes(base64url: string): Uint8Array {
-  let base64 = base64url
-    .replace(/-/g, '+')
-    .replace(/_/g, '/');
+  let base64 = base64url.replace(/-/g, '+').replace(/_/g, '/');
   while (base64.length % 4) {
     base64 += '=';
   }
