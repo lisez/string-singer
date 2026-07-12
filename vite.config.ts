@@ -1,16 +1,17 @@
-import { configDefaults, defineConfig } from 'vitest/config';
 import dts from 'vite-plugin-dts';
+import { configDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [
     dts({
       include: ['index.ts', 'runtimes/**/*', 'utils/**/*'],
       exclude: ['**/*.test.ts', 'demo/**/*'],
-      outDir: 'dist',
+      outDirs: 'dist',
     }),
   ],
   build: {
     outDir: 'dist',
+    minify: 'oxc',
     lib: {
       entry: {
         index: 'index.ts',
