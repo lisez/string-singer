@@ -24,6 +24,7 @@ async function main() {
       name: rootPkg.name,
       version: rootPkg.version,
       description: rootPkg.description,
+      keywords: rootPkg.keywords,
       repository: rootPkg.repository,
       bugs: rootPkg.bugs,
       homepage: rootPkg.homepage,
